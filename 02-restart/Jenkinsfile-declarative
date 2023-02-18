@@ -1,20 +1,20 @@
 pipeline {
-  agent any
-  stages {
-    stage('Hello') {
-      steps {
-        sh 'echo "Hello World"'
-      }
+    agent {
+        label '!windows'
     }
-    stage('stage 2') {
-      steps {
-        sh 'echo "Hello World 2"'
-      }
+
+    environment {
+        DISABLE_AUTH = 'true'
+        DB_ENGINE    = 'sqlite'
     }
-    stage('stage 3') {
-      steps {
-        sh 'echo "Hello World 3"'
-      }
+
+    stages {
+        stage('Build') {
+            steps {
+                echo "Database engine is ${DB_ENGINE}"
+                echo "DISABLE_AUTH is ${DISABLE_AUTH}"
+                sh 'printenv'
+            }
+        }
     }
-  }
 }
