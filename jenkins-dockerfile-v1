@@ -1,0 +1,34 @@
+#ENV VARIABLES 
+STUDENT_NAME="dan"
+VERSION="v1.0.0"
+
+docker version
+
+echo "Checking for running containers"
+docker ps -aqf "name=$STUDENT_NAME"
+
+echo "Cleaning up my old containers if any exist"
+docker rm -f $(docker ps -aqf "name=$STUDENT_NAME") 2&>/dev/null
+echo "Sleeping to make sure container has enough time to get removed"
+sleep 15
+docker ps --filter "name=$STUDENT_NAME"
+
+echo "Check out the files in the directory"
+ls -ltra
+cat Dockerfile
+
+echo "Start the build"
+docker build -t $STUDENT_NAME:$VERSION .
+
+echo "Check out the image we created"
+docker images --filter "reference=$STUDENT_NAME"
+
+echo "Let's start a container and test it"
+docker run -d --name $STUDENT_NAME $STUDENT_NAME:$VERSION
+
+echo "Check to make sure container is running"
+docker ps --filter "name=$STUDENT_NAME"
+
+echo "Clean up containers"
+docker rm -f $(docker ps -aqf "name=$STUDENT_NAME") 2&>/dev/null
+
