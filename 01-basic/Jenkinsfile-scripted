@@ -1,0 +1,18 @@
+node {
+  stage('Scripted') {
+    sh 'echo "This is my scripted pipeline file"'
+  }
+}
+
+  stage('Scripted Pipeline') {
+        sh 'echo "A scripted Jenkins pipeline begins with "node" as the first word in the file, which differentiates a scripted pipeline from a declarative pipeline"'
+  }
+}
+
+  stage('Scripted Pipeline Defined') {
+    sh '"A Scripted Pipeline is a sequence of stages to perform CI/CD-related tasks that can be specified as code, enabling you to develop a pipeline script and add it to your code repository as you version it"'
+  }
+}
+
+
+
