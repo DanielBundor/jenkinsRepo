@@ -1,3 +1,0 @@
-[submodule "jenkins-library"]
-	path = jenkins-library
-	url = https://github.com/DanielBundor/jenkinsRepo.git
